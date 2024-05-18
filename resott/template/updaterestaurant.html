@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+	<meta charset="UTF-8">
+	<title>Update Restaurant Details</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+		body {
+		  -webkit-animation: colorchange 20s infinite;
+		  animation: colorchange 20s infinite;
+		}
+		@-webkit-keyframes colorchange {
+		  0% {
+			background: #9d72cb;
+		  }
+		  25% {
+			background: #3fbbf0;
+		  }
+		  50% {
+			background: #5a6064;
+		  }
+		  75% {
+			background: #e8c16c;
+		  }
+		  100% {
+			background: #0e0e0e;
+		  }
+		}
+		@keyframes colorchange {
+		  0% {
+			background: #9d72cb;
+		  }
+		  25% {
+			background: #3fbbf0;
+		  }
+		  50% {
+			background: #5a6064;
+		  }
+		  75% {
+			background: #e8c16c;
+		  }
+		  100% {
+			background: #0e0e0e;
+		  }
+		}
+	  </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <h1 style="text-align:center"><font face="Palatino" size="20px" color="white">📝Update or Edit your Restaurant Details Here</font></h1>
+	<div class="container rounded bg-white mt-5">
+        <div class="row">
+            <div class="col-md-4 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-6" src="{{ disent2.profilepic.url }}" width="220" id="output">
+                    <h3><font face="Palatino" size="6px" color="blue">Username: {{user.username}}</font></h3>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex flex-row align-items-center back"><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                                <h6><a href="{% url 'index' %}" title="Back to Home"> ⬅️Back to Home</a></h6>
+                        </div>
+                        <h6 class="text-right"><a href="{% url 'booking' %}" title="login another user"> Back to Restaurant Profile➡️</a></h6>
+                    </div>
+                    <form action="{% url 'updaterestaurant' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <label>Update Image:</label>
+                        <input type="file" accept="image/*" name="pimg" id="file" onchange="loadfile(event)">
+                        <br>
+						<br>
+                        
+                    <div class="row mt-2">
+                        <div class="col-md-6"><input type="text" class="form-control" name="lo" value="{{ disent2.localty }}" placeholder="Update Locality"></div>
+                        <div class="col-md-6"><input type="text" class="form-control" name="d" value="{{ disent2.details }}" placeholder="Update Details"></div>
+                    </div>
+                    <div class="row mt-3">
+						<div class="col-md-6"><input type="text" class="form-control" name="dis" value="{{ disent2.dis}}" placeholder="Update Estimate Cost"></div>
+                        <div class="col-md-6"><input type="text" class="form-control" name="o" value="{{ disent2.overview }}" placeholder="Update Overview"></div>
+                        </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><input type="text" class="form-control" name="ab" value="{{ disent2.about }}" placeholder="Update About"></div>
+						<div class="col-md-6"><input type="text" class="form-control" name="co" value="{{ disent2.contact }}" placeholder="Update Contact No."></div>
+                        </div>
+					<div class="row mt-3">
+						<div class="col-md-6"><input type="text" class="form-control" name="c" value="{{ disent2.costEstimate }}" placeholder="Update Estimate Cost"></div>
+						<div class="col-md-6"><input type="text" class="form-control" name="t" value="{{ disent2.timings }}" placeholder="Update Timings"></div>
+					</div>
+						<br>
+						<div class="row mt-3">
+				
+							</div>
+                    <button for="file" type="submit" style="cursor:pointer;background-color:red;color:whitesmoke;">UPDATE DETAILS</button>
+                    </form>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>   
+	</body>
+</html>

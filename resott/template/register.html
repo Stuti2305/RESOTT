@@ -1,0 +1,299 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>RESOTT</title>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href='{% static "assets/css/style-starter.css" %}'>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+	<!-- color changong background -->
+	<style>
+		body {
+		  -webkit-animation: colorchange 20s infinite;
+		  animation: colorchange 20s infinite;
+		}
+		@-webkit-keyframes colorchange {
+		  0% {
+			background: #c6e09f;
+		  }
+		  25% {
+			background: #84beef;
+		  }
+		  50% {
+			background: #1c87c9;
+		  }
+		  75% {
+			background: #9785e6;
+		  }
+		  100% {
+			background: #d0e2bc;
+		  }
+		}
+		@keyframes colorchange {
+		  0% {
+			background: #c6e09f;
+		  }
+		  25% {
+			background: #84beef;
+		  }
+		  50% {
+			background: #1c87c9;
+		  }
+		  75% {
+			background: #9785e6;
+		  }
+		  100% {
+			background: #d0e2bc;
+		  }
+		}
+		#hp  {
+			float: right;    
+ 			margin: 0 0 0 15px;
+		}
+		.myDiv {
+  			border: 5px outset #9785e6;
+  			background-color: #d3e9f7;    
+  			text-align: center;
+		}
+
+	</style>
+  </head>
+  <body id="home">
+<section class=" w3l-header-4 header-sticky">
+	<!--header-->
+	<header id="site-header" class="fixed-top">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-dark stroke">
+				<a class="navbar-brand" href="{% url 'index' %}">
+					<span class="fa fa-cutlery"></span> RESOTT
+				</a>
+				
+				<button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+					<span class="navbar-toggler-icon fa icon-close fa-times"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item @@home__active">
+							<a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item @@about__active">
+							<a class="nav-link" href="{% url 'about' %}">About</a>
+						</li>
+						<li class="nav-item @@booking__active">
+							<a class="nav-link" href="{% url 'obooking' %}">Booking</a>
+						</li>
+                        <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'register' %}">Register</a>
+						</li>
+						<li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'login' %}">Login</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+						</li>
+						<form action="{% url 'search' %}" method="get" class="signin-form">
+							{% csrf_token %}
+									  <li class="nav-item ml-4">
+											  
+							  <div class="row book-form">
+								  <div class="form-input col-lg-6 col-md-6">
+									  <input type="text" name="search" placeholder="🔎Search" required="">
+								  </div>
+									  </li>
+						  <li class="nav-item ml-4">
+						  <div class="bottom-btn col-md-4  mt-3">
+							<button class="btn btn-danger">GO</button>
+							</div>
+							</li>
+						  </form>
+								  </ul>
+							  </div>
+						  </nav>
+					  </div>
+	  </header>
+	<!--/header-->
+</section>
+
+<script src='{% static "assets/js/jquery-3.3.1.min.js" %}'></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src='{% static "assets/js/bootstrap.min.js" %}'></script>
+<!-- //bootstrap working-->
+<!--/MENU-JS-->
+<script>
+	$(window).on("scroll", function () {
+	  var scroll = $(window).scrollTop();
+  
+	  if (scroll >= 80) {
+		$("#site-header").addClass("nav-fixed");
+	  } else {
+		$("#site-header").removeClass("nav-fixed");
+	  }
+	});
+  
+	//Main navigation Active Class Add Remove
+	$(".navbar-toggler").on("click", function () {
+	  $("header").toggleClass("active");
+	});
+	$(document).on("ready", function () {
+	  if ($(window).width() > 991) {
+		$("header").removeClass("active");
+	  }
+	  $(window).on("resize", function () {
+		if ($(window).width() > 991) {
+		  $("header").removeClass("active");
+		}
+	  });
+	});
+  </script>
+  <!--//MENU-JS-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function () {
+  $('.navbar-toggler').click(function () {
+    $('body').toggleClass('noscroll');
+  })
+});
+</script>
+<!-- disable body scroll which navbar is in active -->
+
+
+<!-- breadcrumbs -->
+<section class="w3l-inner-banner-main">
+    <div class="about-inner contact">
+        <div class="breadcrumbs-sub">
+            <ul class="breadcrumbs-custom-path">
+                <li class="right-side "><a href="{% url 'index' %}" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
+                <li class="active ">
+                    Register</li>
+            </ul>
+            </div>
+</div>
+</div>
+</section>
+
+
+<!-- breadcrumbs -->
+<div class="myDiv">
+	<img src='{% static "assets/images/red icon.jpg" %}' alt="Smiley face" width="200" height="150" style="float: left -4px;">
+	<h1> &nbsp New Restaurant?<br></h1>
+	 <h2>&nbsp&nbsp<button class="btn-info px-5 m-4"><a href="{% url 'RRegister' %}">Register now</a></button></h2>
+  <h3><font face="Palatino">&nbsp&nbsp&nbsp Get Discovered by Resott Customers </font></h3>
+  </div>
+<section class="w3l-contact-info-main" id="contact">
+    <div class="contact-sec	">
+        <div class="container">
+            <div class="main-titles-head">
+                <h3 class="header-name ">
+                    Register Yourself Here
+                </h3>
+                <p class="tiltle-para "><font color="black">Let us know you so that we can keep you updated!</font></p>
+            </div>
+            <div class="contact-grids d-grid">
+                {% for i in messages %}
+				<h1>{{i}}</h1>
+				{% endfor %}
+				
+				<img src='{% static "assets/images/regpg.jpg" %}' alt="" width="400" height="630" >
+                <div class="contact-right">
+                    <form action="{% url 'register' %}" method="post" class="signin-form">
+                        {% csrf_token %}
+                        <div class="input-grids">
+                            First Name:<input type="text" name="fname" id="w3lName" placeholder="First Name*" class="contact-input" required>
+                            Last Name:<input type="text" name="lname" id="w3lName" placeholder="Last Name" class="contact-input">
+                            User Name:<input type="text" pattern="[A-Z, a-z][0-9,a-z,A-Z,_,$]{7}" title="First character should be a letter, use special symbols _ or $ and use maximum 8 characters." name="uname" id="w3lName" placeholder="User Name*" class="contact-input" required>
+                            Email:<input type="email" name="email" id="w3lSender" placeholder="Your Email*" class="contact-input" required="">
+							Phone Number:<input type="tel" pattern="[6789][0-9]{9}" title="Please enter valid Phone Number" name="contact" id="w3lName" placeholder="contact*" class="contact-input" required>
+							Address:<input type="text" name="address" id="w3lName" placeholder="address" class="contact-input">
+							City:<input type="text" name="city" id="w3lName" placeholder="city" class="contact-input">
+                            Password<input type="password" name="pw" id="w3lName" placeholder="Password*" class="contact-input" minlength="2" maxlength="8" required>
+                            Confirm Password:<input type="password" name="cpw" id="w3lName" placeholder="Confirm Password*" class="contact-input" maxlength="8" required>
+                            
+                            
+                        </div>
+                        <div class="form-input">
+                            
+                        </div>
+                        <button class="btn btn-style btn-primary submit">Submit</button>
+                    </form>
+                </div>
+
+    </div>
+</div>
+<div class="container-fluid">
+
+</div>
+</div>
+</section>     
+<section class="w3l-footer-29-main">
+	<div class="footer-29 py-5 text-center">
+	  <div class="container">
+		<div class="footer-list-29 footer-1 ">
+				<h2><a href="{% url 'index' %}" class="footer-logo"><span class="fa fa-cutlery"></span> RESOTT </a></h2>
+				<p class="para">We connect people (who want food) to cool restaurants (who make food).
+					 We are here to help you with the food stuff so you can do other stuff <3 </p>   
+		  </div>
+		<div class="row footer-top-29">
+
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Address</h6>
+				<ul>
+					<li><p><span class="fa fa-map-marker"></span> 632/96 HAZRATGANJ LUCKNOW.</p></li>
+				</ul>
+		  </div>
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Opening Hours</h6>
+				<ul>
+						<li><p><span>Mon-Fri:</span> 9AM-11PM</p></li>
+					<li><p><span>Sat-Sun:</span> 10AM-1PM</p></li>
+				</ul>
+		  </div>
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Contact Us</h6>
+				<ul>
+					<li><a href="tel:+7-800-999-800"><span class="fa fa-phone"></span> +(21)-255-999-8888</a></li>
+					<li><a href="mailto:corporate-mail@support.com" class="mail"><span class="fa fa-envelope-open-o"></span> resott-mail@support.com</a></li>
+				</ul>
+		  </div>
+		</div>
+	</div>
+  </section>
+  <section class="w3l-footer-29-main w3l-copyright">
+	<div class="container">
+	  <div class=" bottom-copies text-center">
+		<p class="copy-footer-29">© 2021 RESOTT. All rights reserved | </p>
+	  </div>
+	</div>
+  </section>
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" title="Go to top">
+	<span class="fa fa-long-arrow-up"></span>
+</button>
+<script>
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function () {
+		scrollFunction()
+	};
+
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			document.getElementById("movetop").style.display = "block";
+		} else {
+			document.getElementById("movetop").style.display = "none";
+		}
+	}
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
+</script>
+</body>
+</html>

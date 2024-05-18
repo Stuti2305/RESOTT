@@ -1,0 +1,627 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>RESOTT</title>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href='{% static "assets/css/style-starter.css" %}'>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <style>body {
+        background: #67B26F;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #4ca2cd, #67B26F);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #4ca2cd, #67B26F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        padding: 0;
+        margin: 0;
+        font-family: 'Lato', sans-serif;
+        color: #000;
+    }
+    
+    .student-profile .card {
+        border-radius: 10px;
+    }
+    
+    .student-profile .card .card-header .profile_img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        margin: 10px auto;
+        border: 10px solid #ccc;
+        border-radius: 50%;
+    }
+    
+    .student-profile .card h3 {
+        font-size: 20px;
+        font-weight: 700;
+    }
+    
+    .student-profile .card p {
+        font-size: 16px;
+        color: #000;
+    }
+    
+    .student-profile .table th,
+    .student-profile .table td {
+        font-size: 14px;
+        padding: 5px 10px;
+        color: #000;
+    }
+    
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    
+    article, header, section, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+        display: block;
+    }
+    body {
+        color: #222;
+        font-size: 100%;
+        line-height: 24px;
+        margin: 0;
+        padding:0;
+        font-family: "Raleway",sans-serif;
+    }
+    a{
+        font-family: "Raleway",sans-serif;
+        text-decoration: none;
+        outline: none;
+    }
+    a:hover, a:focus {
+        color: #373e18;
+    }
+    section {
+        float: left;
+        width: 100%;
+        padding-bottom:3em;
+    }
+    h2 {
+        color: #1a0e0e;
+        font-size: 26px;
+        font-weight: 700;
+        margin: 0;
+        line-height: normal;
+        text-transform:uppercase;
+    }
+    h2 span {
+        display: block;
+        padding: 0;
+        font-size: 18px;
+        opacity: 0.7;
+        margin-top: 5px;
+        text-transform:uppercase;
+    }
+    
+    #float-right{
+        float:right;
+
+    }
+    
+    
+    /* ******************
+        Script Top
+    *******************/
+    
+    .ScriptTop {
+        background: #fff none repeat scroll 0 0;
+        float: left;
+        font-size: 0.69em;
+        font-weight: 600;
+        line-height: 2.2;
+        padding: 12px 0;
+        text-transform: uppercase;
+        width: 100%;
+    }
+    
+    /* To Navigation Style 1*/
+    .ScriptTop ul {
+        margin: 24px 0;
+        padding: 0;
+        text-align: left;
+    }
+    .ScriptTop li{
+        list-style:none;	
+        display:inline-block;
+    }
+    .ScriptTop li a {
+        background: #6a4aed none repeat scroll 0 0;
+        color: #fff;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 5px 18px;
+        text-decoration: none;
+        text-transform: capitalize;
+    }
+    .ScriptTop li a:hover{
+        background:#000;
+        color:#fff;
+    }
+    
+    
+    /* ******************
+        Script Header
+    *******************/
+    
+    .ScriptHeader {
+        float: left;
+        width: 100%;
+        padding: 2em 0;
+    }
+    .rt-heading {
+        margin: 0 auto;
+        text-align:center;
+    }
+    .Scriptcontent{
+        line-height:28px;	
+    }
+    .ScriptHeader h1{
+        font-family: "brandon-grotesque", "Brandon Grotesque", "Source Sans Pro", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+        color: #6a4aed;
+        font-size: 26px;
+        font-weight: 700;
+        margin: 0;
+        line-height: normal;
+    
+    }
+    .ScriptHeader h2 {
+        color: #312c8f;
+        font-size: 20px;
+        font-weight: 400;
+        margin: 5px 0 0;
+        line-height: normal;
+    
+    }
+    .ScriptHeader h1 span {
+        display: block;
+        padding: 0;
+        font-size: 22px;
+        opacity: 0.7;
+        margin-top: 5px;
+    
+    }
+    .ScriptHeader span {
+        display: block;
+        padding: 0;
+        font-size: 22px;
+        opacity: 0.7;
+        margin-top: 5px;
+    }
+    .rt-container {
+        margin: 0 auto;
+        padding-left:12px;
+        padding-right:12px;
+    }
+    .rt-row:before, .rt-row:after {
+      display: table;
+      line-height: 0;
+      content: "";
+    }
+    
+    .rt-row:after {
+      clear: both;
+    }
+    [class^="col-rt-"] {
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      padding: 0 15px;
+      min-height: 1px;
+      position: relative;
+    }
+    
+    
+    @media (min-width: 768px) {
+      .rt-container {
+        width: 750px;
+      }
+      [class^="col-rt-"] {
+        float: left;
+        width: 49.9999999999%;
+      }
+      .col-rt-6, .col-rt-12 {
+        width: 100%;
+      }
+      
+    }
+    
+    @media (min-width: 1200px) {
+        .rt-container {
+            width: 1170px;
+        }
+        .col-rt-1 {
+            width:16.6%;
+        }
+        .col-rt-2 {
+            width:30.33%;
+        }
+        .col-rt-3 {
+            width:50%;
+        }
+        .col-rt-4 {
+            width: 67.664%;
+        }
+        .col-rt-5 {
+            width: 83.33%;
+        }
+        
+    
+    }
+    
+    @media only screen and (min-width:240px) and (max-width: 768px){
+         .ScriptTop h1, .ScriptTop ul {
+            text-align: center;
+        }
+        .ScriptTop h1{
+            margin-top:0;
+            margin-bottom:15px;
+        }
+        .ScriptTop ul{
+             margin-top:12px;		
+        }
+        
+        .ScriptHeader h1,
+        .ScriptHeader h2, 
+        .scriptnav ul{
+            text-align:center;	
+        }
+        .scriptnav ul{
+             margin-top:12px;		
+        }
+        #float-right{
+            float:none;	
+        }
+        
+    }
+    li{
+      
+      float:left;
+    padding:50px;
+  }
+    </style>
+  </head>
+  <body id="home">
+<section class=" w3l-header-4 header-sticky">
+	<!--header-->
+	<header id="site-header" class="fixed-top">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-dark stroke">
+				<a class="navbar-brand" href="{% url 'index' %}">
+					<span class="fa fa-cutlery"></span> RESOTT
+				</a>
+				<!-- if logo is image enable this   
+			<a class="navbar-brand" href="#index.html">
+				<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+			</a> -->
+				<button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+					<span class="navbar-toggler-icon fa icon-close fa-times"></span>
+					
+				</button>
+	  
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item @@home__active">
+							<a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item @@about__active">
+							<a class="nav-link" href="{% url 'about' %}">About</a>
+						</li>
+            <li class="nav-item @@booking__active">
+							<a class="nav-link" href="{% url 'obooking' %}">Booking</a>
+						</li>
+            
+            {% if user.is_authenticated %}
+            <li class="nav-item @@register__active">
+              
+							<a class="nav-link" href="{% url 'profile' %}">hello {{user.first_name}}</a>
+						</li>
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'signout' %}">Log-out</a>
+						</li>
+            {% else %}
+            <li class="nav-item @@register__active">
+              
+							<a class="nav-link" href="{% url 'register' %}">Register</a>
+						</li>
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'login' %}">Login</a>
+						</li>
+            {% endif %}
+						<li class="nav-item @@contact__active">
+							<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+						</li>
+            <form action="{% url 'search' %}" method="get" class="signin-form">
+              {% csrf_token %}       
+						<li class="nav-item ml-4">
+								
+                <div class="row book-form">
+                    <div class="form-input col-lg-6 col-md-6">
+                        <input type="text" name="search" placeholder="🔎Search" required="">
+                    </div>
+						</li>
+            <li class="nav-item ml-4">
+            <div class="bottom-btn col-md-4  mt-3">
+              <button class="btn btn-danger">Go</button>
+              </div>
+              </li>
+            </form>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	  </header>
+	<!--/header-->
+</section>
+
+
+
+<script src='{% static "assets/js/jquery-3.3.1.min.js" %}'></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src='{% static "assets/js/bootstrap.min.js" %}'></script>
+<!-- //bootstrap working-->
+<!--/MENU-JS-->
+<script>
+	$(window).on("scroll", function () {
+	  var scroll = $(window).scrollTop();
+  
+	  if (scroll >= 80) {
+		$("#site-header").addClass("nav-fixed");
+	  } else {
+		$("#site-header").removeClass("nav-fixed");
+	  }
+	});
+  
+	//Main navigation Active Class Add Remove
+	$(".navbar-toggler").on("click", function () {
+	  $("header").toggleClass("active");
+	});
+	$(document).on("ready", function () {
+	  if ($(window).width() > 991) {
+		$("header").removeClass("active");
+	  }
+	  $(window).on("resize", function () {
+		if ($(window).width() > 991) {
+		  $("header").removeClass("active");
+		}
+	  });
+	});
+  </script>
+  <!--//MENU-JS-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function () {
+  $('.navbar-toggler').click(function () {
+    $('body').toggleClass('noscroll');
+  })
+});
+</script>
+<!-- disable body scroll which navbar is in active -->
+
+
+<!-- breadcrumbs -->
+<section class="w3l-inner-banner-main">
+    <div class="about-inner services ">
+        <div class="container">   
+
+        <div class="breadcrumbs-sub">
+            <ul class="breadcrumbs-custom-path">
+                <li class="right-side "><a href="{% url 'index' %}" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
+                <li class="active ">Profile</li>
+            </ul>
+            </div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="ScriptTop">
+  <div class="rt-container">
+    
+        <div class="row" >
+          
+          <div class="col-md-3"> <a href="{% url 'register' %}"  title="Back to registering"> ⬅️Register new user</a></div>
+            
+           <div class="col-md-3"><a href="{% url 'login' %}"  title="login another user"> Login another User➡️</a></div>
+            
+            <div class="col-md-3"><a href="{% url 'uprofile' %}"  title="Update Profile"> Update your Profile➡️</a></div>
+            
+        
+        </div>
+    </div>
+</div>
+
+<header class="ScriptHeader">
+    <div class="rt-container">
+    	<div class="col-rt-12">
+        	<div class="rt-heading">
+            	<!--<h1>Student Profile Page Design Example</h1>
+                <p>A responsive student profile page design.</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="rt-container">
+          <div class="col-rt-12">
+              <div class="Scriptcontent">
+              
+Student Profile -->
+<div class="student-profile py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <br>
+        <br>
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent text-center">
+            <img class="rounded-circle mt-6" src="{{ disent.profilepic.url }}" height="260" width="150" id="output">
+            <h3><font face="Palatino" size="6px" color="blue">username:{{user.username}}</font></h3>     <!--user's table in views-->
+          </div>
+          <div class="card-body">
+            <!--<p class="mb-0"><strong class="pr-1">Contact Details</strong>{{ disent.contactno }}</p>
+            <p class="mb-0"><strong class="pr-1">Address</strong>{{ disent.address }}</p>
+            <p class="mb-0"><strong class="pr-1">City</strong>{{ disent.city }}</p>-->
+          </div>
+        </div>
+      </div>
+
+        <div class="col-md-8 mt-1">
+
+          <div class="card mb-3 content">
+              <h1 class="m-3 pt-3"> 📝 Your Information</h1>
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-3">
+                          <h5>First Name</h5>
+                      </div>
+                      <div class="col-md-9 text-secondary">
+                          {{user.first_name}}
+                      </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                      <div class="col-md-3">
+                          <h5>Last Name</h5>
+                      </div>
+                      <div class="col-md-9 text-secondary">
+                          {{user.last_name}}
+                      </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                      <div class="col-md-3">
+                          <h5>User Name</h5>
+                      </div>
+                      <div class="col-md-9 text-secondary">
+                          {{user.username}}
+                      </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                      <div class="col-md-3">
+                          <h5>Email</h5>
+                      </div>
+                      <div class="col-md-9 text-secondary">
+                         {{user.email}}
+                      </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                      <div class="col-md-3">
+                          <h5>Contact Number</h5>
+                      </div>
+                      <div class="col-md-9 text-secondary">
+                         {{disent.contactno}}
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+      </div>
+        
+          <!--<div style="height: 26px"></div>
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0"><i class="far  pr-1"></i> 📝 Your Information</h3>
+          </div>
+          <div class="card-body pt-0">
+            <p class="mb-0"><strong class="pr-1"></strong></p>
+              <p><p class="mb-0"><strong class="pr-1">Contact Details- </strong>{{ disent.contactno }}</p>
+              
+              <p class="mb-0"><strong class="pr-1">Address- </strong>{{ disent.address }}</p> <!--disent mei models k object calling 
+              <p class="mb-0"><strong class="pr-1">City- </strong>{{ disent.city }}</p></p>
+          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+           
+    	<!--</div>
+		</div>
+    </div></section>-->
+    
+
+<section class="w3l-footer-29-main">
+	<div class="footer-29 py-5 text-center">
+	  <div class="container">
+		<div class="footer-list-29 footer-1 ">
+				<h2><a href="{% url 'index' %}" class="footer-logo"><span class="fa fa-cutlery"></span> RESOTT </a></h2>
+				<p class="para">We connect people (who want food) to cool restaurants (who make food).
+                     We are here to help you with the food stuff so you can do other stuff <3</p>
+	
+		  </div>
+		<div class="row footer-top-29">
+
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Address</h6>
+				<ul>
+					<li><p><span class="fa fa-map-marker"></span> 632/96 HAZRATGANJ LUCKNOW.</p></li>
+				</ul>
+		  </div>
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Opening Hours</h6>
+				<ul>
+						<li><p><span>Mon-Fri:</span> 9AM-11PM</p></li>
+					<li><p><span>Sat-Sun:</span> 10AM-1PM</p></li>
+				</ul>
+		  </div>
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Contact Us</h6>
+				<ul>
+					<li><a href="tel:+7-800-999-800"><span class="fa fa-phone"></span> +(21)-255-999-8888</a></li>
+					<li><a href="mailto:corporate-mail@support.com" class="mail"><span class="fa fa-envelope-open-o"></span> resott-mail@support.com</a></li>
+				</ul>
+		  </div>
+		</div>
+	</div>
+  </section>
+  <section class="w3l-footer-29-main w3l-copyright">
+	<div class="container">
+	  <div class=" bottom-copies text-center">
+		<p class="copy-footer-29">© 2021 RESOTT. All rights reserved |</a></p>
+	  </div>
+	</div>
+  </section>
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" title="Go to top">
+	<span class="fa fa-long-arrow-up"></span>
+</button>
+<script>
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function () {
+		scrollFunction()
+	};
+
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			document.getElementById("movetop").style.display = "block";
+		} else {
+			document.getElementById("movetop").style.display = "none";
+		}
+	}
+
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
+</script>
+<!-- /move top -->
+</body>
+</html>

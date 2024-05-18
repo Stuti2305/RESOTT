@@ -1,0 +1,616 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .checked {
+  color: orange;
+}
+    .a
+    {
+      font-size: 35px;
+      font-family:'Times New Roman', Times, serif ;
+      font-style: bold;
+    }
+    .b
+    {
+      font-size: 25px;
+      font-family:'Times New Roman', Times, serif ;
+    }
+    .dr
+    {
+      font-size: 25px;
+      font-family:'Times New Roman', Times, serif ;
+      color: black;
+    }
+    .c
+    {
+      border:5px solid black;
+      border-radius:25px;
+      
+    }
+    /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  appearance: textfield;
+}
+    .d
+    {
+      font-size: 14px;
+      font-family:lucida bright ;
+      font-style: bold;
+    }
+    .e
+    {
+      font-size: 18px;
+      font-family:lucida bright ;
+      font-style: bold;
+    }
+    .card{
+      border :50% solid black;
+      border-radius:25px;
+      width:600px;
+      margin-left:10px;
+    }
+    .card2{
+      border :50% solid black;
+      border-radius:25px;
+      width:500px;
+      margin-left:30px;
+    }
+    .card3{
+      border :50% solid black;
+      border-radius:2px;
+      width:450px;
+      margin-left:5px;
+      background-color: white;
+    }
+    .n
+    {
+      margin-left:16px;
+    }
+    .bn
+    {
+      margin-left: 340px;
+      margin-top: 11px;
+    }
+    .n1
+    {
+      margin-top: 11px;
+    }
+    .n2
+    {
+      margin-top: 10px;
+      margin-left: 145px;
+    }
+    .bl{
+      color: red;
+      font-size: 20px;
+    }
+    .bc{
+      background-color: rgb(227, 204, 249);
+    }
+    .box
+    {
+      border-radius: 2px;
+      width: 160px;
+      height: 30px;
+      background-color:darkseagreen;
+      margin-left:30px;
+      border: 2px;;
+    }
+    
+    .bd
+    {
+      font-size: 12px;
+      font-family:lucida bright ;
+      font-style: bold;
+    }
+
+    .rv
+    {
+      font-family:lucida bright ;
+      font-size: 12px;
+    }
+
+  </style>
+
+    <title>RESOTT</title>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href='{% static "assets/css/style-starter.css" %}'>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  </head>
+  <body id="home" class="bc">
+<section class=" w3l-header-4 header-sticky">
+	<!--header-->
+	<header id="site-header" class="fixed-top">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-dark stroke">
+				<a class="navbar-brand" href="{% url 'index' %}">
+					<span class="fa fa-cutlery"></span> RESOTT
+				</a>
+				<!-- if logo is image enable this   
+			<a class="navbar-brand" href="#index.html">
+				<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+			</a> -->
+				<button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+					<span class="navbar-toggler-icon fa icon-close fa-times"></span>
+					
+				</button>
+	  
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item @@about__active">
+              <a class="nav-link" href="{% url 'about' %}">About</a> 
+						</li>
+            <li class="nav-item @@booking__active">
+							<a class="nav-link" href="{% url 'obooking' %}">Booking</a>
+						</li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item @@register__active">
+              
+							<a class="nav-link" href="{% url 'profile' %}">hello {{user.first_name}}</a>
+						</li>
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'signout' %}">Log-out</a>
+						</li>
+            {% else %}
+            <li class="nav-item @@register__active">
+              
+							<a class="nav-link" href="{% url 'register' %}">Register</a>
+						</li>
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'login' %}">Login</a>
+						</li>
+            {% endif %}
+						<li class="nav-item @@contact__active">
+							<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+						</li>
+						<form action="{% url 'search' %}" method="get" class="signin-form">
+              {% csrf_token %}
+						<li class="nav-item ml-4">
+								
+                <div class="row book-form">
+                    <div class="form-input col-lg-6 col-md-6">
+                        <input type="text" name="search" placeholder="🔎Search" required="">
+                    </div>
+						</li>
+            <li class="nav-item ml-4">
+            <div class="bottom-btn col-md-4  mt-3">
+              <button class="btn btn-danger">Go</button>
+              </div>
+              </li>
+            </form>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	<!--/header-->
+</section>
+
+<script src='{% static "assets/js/jquery-3.3.1.min.js" %}'></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src='{% static "assets/js/bootstrap.min.js" %}'></script>
+<!-- //bootstrap working-->
+<!--/MENU-JS-->
+<script>
+	$(window).on("scroll", function () {
+	  var scroll = $(window).scrollTop();
+  
+	  if (scroll >= 80) {
+		$("#site-header").addClass("nav-fixed");
+	  } else {
+		$("#site-header").removeClass("nav-fixed");
+	  }
+	});
+  
+	//Main navigation Active Class Add Remove
+	$(".navbar-toggler").on("click", function () {
+	  $("header").toggleClass("active");
+	});
+	$(document).on("ready", function () {
+	  if ($(window).width() > 991) {
+		$("header").removeClass("active");
+	  }
+	  $(window).on("resize", function () {
+		if ($(window).width() > 991) {
+		  $("header").removeClass("active");
+		}
+	  });
+	});
+  </script>
+  <!--//MENU-JS-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function () {
+  $('.navbar-toggler').click(function () {
+    $('body').toggleClass('noscroll');
+  })
+});
+</script>
+<div class="container">
+  {% for i in diy %}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>        
+
+
+
+<!-- Wrapper for slides -->
+<div class="carousel-inner">
+<div class="item active">
+<img src="{{ i.img1.url }}" alt="product" width="1200" height="550">
+</div>
+
+<div class="item">
+<img src="{{ i.img2.url }}" alt="product" width="1200" height="10">
+</div>
+
+<div class="item">
+<img src="{{ i.img3.url }}" alt="product" width="1200" height="10">
+</div>
+</div>
+
+<!-- Left and right controls -->
+<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+<span class="glyphicon glyphicon-chevron-left"></span>
+<span class="sr-only">Previous</span>
+</a>
+<a class="right carousel-control" href="#myCarousel" data-slide="next">
+<span class="glyphicon glyphicon-chevron-right"></span>
+<span class="sr-only">Next</span>
+</a>
+
+</div>
+
+
+<br>         
+<div class="row">     
+       
+<div class="card">
+<div class="n"  >
+<h1 class="a">{{ i.rest }}</h1>
+<p class="e">{{ i.overview }}</p>
+<h2 class="b">{{ i.localty }}</h2>
+<br>
+<h3><b>Opening hours:</b>{{ i.timings }}</h3>
+<br>
+<p class="e"><b>About this place:</b></p>
+<br>
+<div class="row">
+  <div class="box">
+    <p class="bd">💕Well Sanitized Kitchens</p>
+  </div>
+  <div class="box">
+    <p class="bd">💕Daily Temp. Checks</p>
+  </div>
+  <div class="box">
+    <p class="bd">💕Purity and Cleanliness</p>
+  </div>
+</div>
+<br>
+<p class="d" >{{ i.about }}</p>
+<br>
+<p class="e"><b>Popular Dishes:</b></p>
+
+<p class="d">Cookies, Chocolate, Cakes, Cheesecake, Breads, Pasta</p>
+<br>
+
+<p class="e"><b>People Say This Place Is Known For:</b></p>
+
+<p class="d">Beautiful Place, Chef, Seating, Decor, Wonderful Presentation, Food Presentation</p>
+<br>
+
+<p class="e"><b>Average cost:</b></p>
+<p class="d"> <b>{{ i.costEstimate }}</b> for two people (approx.)</p>
+
+<p >  (Exclusive of applicable taxes and charges, if any)</p>
+<br>
+<p class="d">Cash and Cards accepted</p>
+<p class="d">Digital payments accepted</p>
+<br>
+<p>
+
+  
+
+  <div class="container">
+    
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Review</button>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" >Add Review</h4>
+          </div>
+          <div class="modal-body">
+            <div class="contact-right">
+              
+										<form method="POST" action="{% url 'fd' %}" data-lead="Residential">
+											{% csrf_token %}
+                      <div class="rv">
+												<div class="row">
+												<div class="col-md-6" >
+													<label for="name">Your Name</label>
+													<input type="text" name="name" id="name" value={{user.first_name}} >
+												</div>
+											
+												<div class="col-md-6">
+													<label for="name">Your Ratings</label>
+													<select name="rat" id="review-items">
+														<option value="&#9733">&#9733</option>
+														<option value="&#9733 &#9733">&#9733 &#9733</option>
+														<option value="&#9733 &#9733 &#9733">&#9733 &#9733 &#9733</option>
+														<option value="&#9733 &#9733 &#9733 &#9733">&#9733 &#9733 &#9733 &#9733</option>
+														<option value="&#9733 &#9733 &#9733 &#9733 &#9733">&#9733 &#9733 &#9733 &#9733 &#9733 </option>
+													</div>
+													
+												<div >
+													<label for="phone"></label>
+													<input type="hidden" name="brid" value= {{i.id}} id="phone" required="required">
+												</div>
+                        </div>
+                      </div>
+                        <div class="rv">
+											<label for="comments">Message</label>
+											<textarea name="comments" id="comments" name="mes"rows="2" cols="20" class="n" required="required"></textarea>
+                        </div>
+                      <div class="nws-button text-center  gradient-bg text-uppercase">
+												<div class="rv"><button type="submit" value="Submit">Send Message now</button> </div>
+											</div>
+										</form>
+									</div>
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+  <br>
+</p>
+</div>
+<br>
+<div class="card2">
+  <br>
+  <h3 class="dr"> Discount: {{i.rest.dis}}% </h3>
+<p class="dr">Contact:</p>  
+<p class="bl">{{ i.contact }}</p>
+<h3 class="dr"> Directions: </h3>
+<br>
+<iframe src="{{ i.directions }}" 
+class="c" width="450" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<br>
+<br>
+<div class="card3">
+  <div class="n">
+  <p class="dr">Reviews:</p> 
+  <br>
+  {% for j in feed %}
+          <p><b>USER'S NAME: </b>{{ j.user }}</p>
+          <p><b>RATING: </b>{{ j.rating }}</p>
+          <p><b>REVIEW: </b>{{ j.msg }}</p>
+          <br>
+        {% endfor %}
+      </div>
+      </div>
+  </div>
+</div>
+
+</div>
+
+<br>
+<br>
+
+
+              
+            
+          </div>
+          
+          </div>
+         
+      </div>
+  </div>
+
+</section>
+
+
+<section class="w3l-clients" id="client">
+    <div class="main-w3 text-center">
+        <div class="container">
+            <div class="form-right-inf"> 
+                <div class="form-inner-cont">
+                  <div class="main-titles-head ">
+                    <h3 class="header-name white ">
+                       Book your Table
+                    </h3>
+                    <p class="tiltle-para  ">Book your slot to find the availability of your favourite restaurants.</p>
+                </div>
+                    <form action='{% url "bktbl" %}' method="post" class="signin-form">	
+                      {% csrf_token %}
+					  <div class="row book-form">
+						<div class="form-input col-lg-6 col-md-6">
+							<input type="hidden" name="rid" value="{{i.rest.id}}" placeholder="{{i.rest.id}}" required="">
+						</div>
+						<h1>"{{i.rest.id}}"</h1>
+                        <div class="row book-form">
+                            <div class="form-input col-lg-6 col-md-6">
+                                <input type="text" name="cust" placeholder="Enter Your Name" required="">    
+
+                            </div>
+                            <div class="form-input col-lg-6 col-md-6 mt-md-0 mt-3">
+                               <input type="email" name="em" placeholder="Email" required="">
+                                 
+                           </div>
+                           <div class="form-input col-lg-6 col-md-6 mt-md-0 mt-3">
+                             <div class="n1">
+                            <input type="text" name="cn" placeholder="Contact" required="">
+                          </div> 
+                        </div>
+                           <div class="form-input col-md-4 mt-3">
+                               <input type="date" name="dt" placeholder="Date" required="" min="2024-04-25" max="2024-05-31">
+                           </div>
+                           <div class="form-input col-md-4 mt-3">
+                            <select  name="slt" class="selectpicker">
+                                <option>Time</option>
+                                <option>9:00 AM</option>
+                                <option>10:00 AM</option>
+                                <option>11:00 AM</option>
+                                <option>12:00 PM</option>
+                                <option>1:00 PM</option>
+                                <option>2:00 PM</option>
+                                <option>3:00 PM</option>
+                                <option>4:00 PM</option>
+                                <option>5:00 PM</option>
+                                <option>6:00 PM</option>
+                                <option>7:00 PM</option>
+                                <option>8:00 PM</option>
+                                <option>9:00 PM</option>
+                                <option>10:00 PM</option>
+                                <option>11:00 PM</option>
+                              </select>
+                              
+                                 
+                           </div>
+                           
+                           <div class="form-input col-lg-6 col-md-6 mt-md-0 mt-3">
+                             <div class="n2">
+                            <input type="number" name="per" placeholder="People" required="">
+                          </div>
+                            </div>
+                            
+                            
+                                  
+                           </div> 
+                           <div class="bn">
+                           <button href="menu/{{i.rest.id}}" class="btn">Book Table</button>
+                          </div>
+                          </div>
+                        </div>
+                    </form>
+				</div>
+            </div>
+					{% if user.is_staff %}
+<br>
+
+
+          {% if owner_status %}
+          <a href="{% url 'updaterestaurant' %}"><button href="" class="btn">Update Restaurant details</button></a>
+          {% endif %}
+{% endif %}
+{% endfor %}
+                
+        </div>
+    </div>
+  </section>  
+
+
+  
+
+<section class="w3l-footer-29-main">
+	<div class="footer-29 py-5 text-center">
+	  <div class="container">
+
+		<div class="footer-list-29 footer-1 ">
+				<h2><a href="index.html" class="footer-logo"><span class="fa fa-cutlery"></span> RESOTT </a></h2>
+				<p class="para">We connect people (who want food) to 
+          cool restaurants (who make food).
+        We are here to help you with the food stuff so you can do other stuff <3</p>
+	
+		  </div>
+		<div class="row footer-top-29">
+
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Address</h6>
+				<ul>
+					<li><p><span class="fa fa-map-marker"></span> 632/96 HAZRATGANJ LUCKNOW</p></li>
+				</ul>
+		  </div>
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Opening Hours</h6>
+				<ul>
+						<li><p><span>Mon-Fri:</span> 9AM-11PM</p></li>
+					<li><p><span>Sat-Sun:</span> 10AM-1PM</p></li>
+				</ul>
+		  </div>
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Contact Us</h6>
+				<ul>
+					<li><a href="tel:+7-800-999-800"><span class="fa fa-phone"></span> +(21)-255-999-8888</a></li>
+					<li><a href="mailto:corporate-mail@support.com" class="mail"><span class="fa fa-envelope-open-o"></span> resott-mail@support.com</a></li>
+				</ul>
+		  </div>
+		</div>
+	</div>
+  </section>
+  <section class="w3l-footer-29-main w3l-copyright">
+	<div class="container">
+	  <div class=" bottom-copies text-center">
+		<p class="copy-footer-29">© 2021 RESOTT. All rights reserved | </p>
+	  </div>
+	</div>
+  </section>
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" title="Go to top">
+	<span class="fa fa-long-arrow-up"></span>
+</button>
+<script>
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function () {
+		scrollFunction()
+	};
+
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			document.getElementById("movetop").style.display = "block";
+		} else {
+			document.getElementById("movetop").style.display = "none";
+		}
+	}
+
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
+</script>
+<!-- /move top -->
+</body>
+
+</html>

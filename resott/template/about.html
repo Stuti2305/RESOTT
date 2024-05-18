@@ -1,0 +1,323 @@
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>RESOTT</title>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href='{% static "assets/css/style-starter.css" %}'>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  
+	
+  </head>
+  <body id="home">
+<section class=" w3l-header-4 header-sticky">
+	<!--header-->
+	<header id="site-header" class="fixed-top">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-dark stroke">
+				<a class="navbar-brand" href="{% url 'index' %}">
+					<span class="fa fa-cutlery"></span> RESOTT
+				</a>
+				<button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+					<span class="navbar-toggler-icon fa icon-close fa-times"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item @@about__active">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+						</li>
+            <li class="nav-item @@booking__active">
+							<a class="nav-link" href="{% url 'obooking' %}">Booking</a>
+						</li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'profile' %}">hello {{user.first_name}}</a>
+						</li>
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'signout' %}">Log-out</a>
+						</li>
+            {% else %}
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'register' %}">Register</a>
+						</li>
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'login' %}">Login</a>
+						</li>
+            {% endif %}
+						<li class="nav-item @@contact__active">
+							<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+						</li>
+            <form action="{% url 'search' %}" method="get" class="signin-form">
+              {% csrf_token %}       
+						<li class="nav-item ml-4">
+								
+                <div class="row book-form">
+                    <div class="form-input col-lg-6 col-md-6">
+                        <input type="text" name="search" placeholder="🔎Search" required="">
+                    </div>
+						</li>
+            <li class="nav-item ml-4">
+            <div class="bottom-btn col-md-4  mt-3">
+              <button class="btn btn-danger">Go</button>
+              </div>
+              </li>
+            </form>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	  </header>
+</section>
+
+<script src='{% static "assets/js/jquery-3.3.1.min.js"%}'></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src='{% static "assets/js/bootstrap.min.js"%}'></script>
+<!-- //bootstrap working-->
+<!--/MENU-JS-->
+<script>
+	$(window).on("scroll", function () {
+	  var scroll = $(window).scrollTop();
+  
+	  if (scroll >= 80) {
+		$("#site-header").addClass("nav-fixed");
+	  } else {
+		$("#site-header").removeClass("nav-fixed");
+	  }
+	});
+  
+	//Main navigation Active Class Add Remove
+	$(".navbar-toggler").on("click", function () {
+	  $("header").toggleClass("active");
+	});
+	$(document).on("ready", function () {
+	  if ($(window).width() > 991) {
+		$("header").removeClass("active");
+	  }
+	  $(window).on("resize", function () {
+		if ($(window).width() > 991) {
+		  $("header").removeClass("active");
+		}
+	  });
+	});
+  </script>
+  <!--//MENU-JS-->
+
+<script>
+$(function () {
+  $('.navbar-toggler').click(function () {
+    $('body').toggleClass('noscroll');
+  })
+});
+</script>
+<!-- breadcrumbs -->
+    <section class="w3l-inner-banner-main">
+        <div class="about-inner about ">
+            <div class="container">   
+            <div class="breadcrumbs-sub">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="right-side "><a href="{% url 'index' %}" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
+                    <li class="active ">About</li>
+                </ul>
+            </div>
+</div>
+
+   </div>
+    </section>
+<!-- breadcrumbs //-->
+
+<section class="w3l-content-with-photo-4"  id="about">
+    <div class="content-with-photo4-block ">
+        <div class="container">
+            <div class="main-titles-head ">
+                <h3 class="header-name ">
+					Why we are Best
+                </h3>
+                <p class="tiltle-para  ">We have in house nutritionists behind collections like Healthy Enough,
+					 Vegan, Vegetarian, and more. So when you want to find food that fits your diet,
+					  or to eat a little healthier, we can help.</p>
+            </div>
+            <div class="row">
+
+                <div class="my-bio col-lg-5">
+                    <h3>Best Restaurant food ideas & traditions</h3>
+                <p class="para mb-3">Healthy eating doesn’t have to be overly complicated. 
+					If you feel overwhelmed by all the conflicting nutrition and diet advice out there,
+					 you’re not alone. It seems that for every expert who tells you a certain food is good
+					  for you, you’ll find another saying exactly the opposite.</p>
+                <p class="para mb-3">The truth is that while some specific foods or nutrients have been shown
+					to have a beneficial effect on mood, it’s your overall dietary pattern that is most
+					 important. The cornerstone of a healthy diet should be to replace processed food 
+					 with real food whenever possible.</p>
+                <p class="para mb-3">Eating food that is as close as possible to the way nature made it can make a huge difference 
+					to the way you think, look, and feel.</p>
+            </div>
+            <div class="col-lg-7">
+                <div class="foot-best">
+                <img src='{% static "assets/images/about1.jpg" %}' alt="product" class="img-responsive about-me" width="500" height="500">
+                <img src='{% static "assets/images/about2.jpg" %}' alt="product" class="img-responsive about-me" width="500" height="500">
+            </div>
+            </div>
+            </div>
+    </div>
+</div>
+</section>
+<section class="w3l-stats">
+  <div class="main-w3 ">
+      <div class="container">
+          <div class="row align-items-center">
+              <div class="col-lg-6 main-cont-wthree-fea text-center">
+                  <div class="row">
+                      <div class="col-6 pr-2">
+                          <div class="grids-speci1">
+                              <span class="fa fa-smile-o"></span>
+                              <h3 class="title-spe">1200+</h3>
+                              <p>Happy Clients</p>
+                          </div>
+                      </div>
+                      <div class="col-6 pl-2">
+                          <div class="grids-speci1">
+                              <span class="fa fa-cutlery"></span>
+                              <h3 class="title-spe">25+</h3>
+                              <p>Resturant</p>
+                          </div>
+                      </div>
+                      <div class="col-6 pr-2 mt-4">
+                          <div class="grids-speci1">
+                              <span class="fa fa-users"></span>
+                              <h3 class="title-spe">85+</h3>
+                              <p>Chefs</p>
+                          </div>
+                      </div>
+                      <div class="col-6 pl-2 mt-4">
+                          <div class="grids-speci1">
+                              <span class="fa fa-comments"></span>
+                              <h3 class="title-spe">575+</h3>
+                              <p>Dishes</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-6 title">
+                <h3 class="title-big">Best luxury Food . RESOTT since 2020.</h3>
+                <p class="mt-4 para">The truth is that while some specific foods or nutrients have been shown
+					to have a beneficial effect on mood, it’s your overall dietary pattern that is most
+					 important. The cornerstone of a healthy diet should be to replace processed food 
+					 with real food whenever possible.
+					  Eating food that is as close as possible to the way nature made it can make a huge difference 
+					  to the way you think, look, and feel.</p>
+            </div>
+          </div>
+
+      </div>
+  </div>
+</section>
+<section class="w3l-recent-work">
+	<div class="jst-two-col">
+		<div class="container">
+<div class="row">
+	<div class="my-bio col-lg-6">
+		<h3>We Deliver Good Food
+			Offer Great Smile</h3>
+	<p class="para mb-3">Healthy eating doesn’t have to be overly complicated. 
+		If you feel overwhelmed by all the conflicting nutrition and diet advice out there,
+		 you’re not alone. It seems that for every expert who tells you a certain food is good
+		  for you, you’ll find another saying exactly the opposite.
+		   </p>
+	<p class="para mb-3">The truth is that while some specific foods or nutrients have been shown
+		 to have a beneficial effect on mood, it’s your overall dietary pattern that is most
+		  important. The cornerstone of a healthy diet should be to replace processed food 
+		  with real food whenever possible.
+		   Eating food that is as close as possible to the way nature made it can make a huge difference 
+		   to the way you think, look, and feel.</p>
+</div>
+<div class="col-lg-6 ">
+	<img src='{% static "assets/images/abt3.jpg" %}' alt="product" class="img-responsive about-me" width="450" height="450">
+</div>
+</div>
+		</div>
+	</div>
+</section>
+<section class="w3l-team-main-4" id="team">
+	<!-- /team-grids -->
+	<div class="team-content-page  ">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227822.55035627162!2d80.8024271802209!3d26.84862299412667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd991f32b16b%3A0x93ccba8909978be7!2sLucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1652175194751!5m2!1sen!2sin"
+	width="1262" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+<section class="w3l-footer-29-main">
+	<div class="footer-29 py-5 text-center">
+	  <div class="container">
+		<div class="footer-list-29 footer-1 ">
+				<h2><a href="{% url 'index' %}" class="footer-logo"><span class="fa fa-cutlery"></span> RESOTT </a></h2>
+				<p class="para">We connect people (who want food) to cool restaurants (who make food).
+					 We are here to help you with the food stuff so you can do other stuff <3</p>
+		  </div>
+		<div class="row footer-top-29">
+
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Address</h6>
+				<ul>
+					<li><p><span class="fa fa-map-marker"></span> 632/96 HAZRATGANJ LUCKNOW.</p></li>
+				</ul>
+		  </div>
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Opening Hours</h6>
+				<ul>
+						<li><p><span>Mon-Fri:</span> 9AM-11PM</p></li>
+					<li><p><span>Sat-Sun:</span> 10AM-1PM</p></li>
+				</ul>
+		  </div>
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Contact Us</h6>
+				<ul>
+					<li><a href="tel:+7-800-999-800"><span class="fa fa-phone"></span> +(21)-255-999-8888</a></li>
+					<li><a href="mailto:corporate-mail@support.com" class="mail"><span class="fa fa-envelope-open-o"></span> resott-mail@support.com</a></li>
+				</ul>
+		  </div>
+		</div>
+	</div>
+  </section>
+  <section class="w3l-footer-29-main w3l-copyright">
+	<div class="container">
+	  <div class=" bottom-copies text-center">
+		<p class="copy-footer-29">© 2021 RESOTT. All rights reserved | </p>
+	  </div>
+	</div>
+  </section>
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" title="Go to top">
+	<span class="fa fa-long-arrow-up"></span>
+</button>
+<script>
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function () {
+		scrollFunction()
+	};
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			document.getElementById("movetop").style.display = "block";
+		} else {
+			document.getElementById("movetop").style.display = "none";
+		}
+	}
+
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
+</script>
+<!-- /move top -->
+</body>
+</html>

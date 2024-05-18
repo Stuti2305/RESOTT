@@ -1,0 +1,350 @@
+{% load static %} <!--loading static files-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>RESOTT</title>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href='{% static "assets/css/style-starter.css" %}'> <!--to make it django understandable,these links are available in static folder-->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  
+  </head>
+  <body id="home">
+<section class=" w3l-header-4 header-sticky">
+	<!--header-->
+	<header id="site-header" class="fixed-top">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-dark stroke">
+				<a class="navbar-brand" href="{% url 'index' %}">
+					<span class="fa fa-cutlery"></span> RESOTT
+				</a>
+				<button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+					<span class="navbar-toggler-icon fa icon-close fa-times"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item @@about__active">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+						</li>
+            <li class="nav-item @@booking__active">
+							<a class="nav-link" href="{% url 'obooking' %}">Booking</a>
+						</li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'profile' %}">hello {{user.first_name}}</a>
+						</li>
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'signout' %}">Log-out</a>
+						</li>
+            {% else %}
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'register' %}">Register</a>
+						</li>
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'login' %}">Login</a>
+						</li>
+            {% endif %}
+						<li class="nav-item @@contact__active">
+							<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+						</li>
+            <form action="{% url 'search' %}" method="get" class="signin-form">
+              {% csrf_token %}       
+						<li class="nav-item ml-4">
+                <div class="row book-form">
+                    <div class="form-input col-lg-6 col-md-6">
+                        <input type="text" name="search" placeholder="🔎Search the dish" required="">
+                    </div>
+						</li>
+            <li class="nav-item ml-4">
+            <div class="bottom-btn col-md-4  mt-3">
+              <button class="btn btn-danger">Go</button>
+              </div>
+              </li>
+            </form>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	  </header>
+	<!--/header-->
+</section>
+
+<script src='{% static "assets/js/jquery-3.3.1.min.js" %}'></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src='{% static "assets/js/bootstrap.min.js" %}'></script>
+<!-- //bootstrap working-->
+<!--/MENU-JS-->
+<script>
+	$(window).on("scroll", function () {
+	  var scroll = $(window).scrollTop();
+  
+	  if (scroll >= 80) {
+		$("#site-header").addClass("nav-fixed");
+	  } else {
+		$("#site-header").removeClass("nav-fixed");
+	  }
+	});
+  
+	//Main navigation Active Class Add Remove
+	$(".navbar-toggler").on("click", function () {
+	  $("header").toggleClass("active");
+	});
+	$(document).on("ready", function () {
+	  if ($(window).width() > 991) {
+		$("header").removeClass("active");
+	  }
+	  $(window).on("resize", function () {
+		if ($(window).width() > 991) {
+		  $("header").removeClass("active");
+		}
+	  });
+	});
+  </script>
+  <!--//MENU-JS-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function () {
+  $('.navbar-toggler').click(function () {
+    $('body').toggleClass('noscroll');
+  })
+});
+</script>
+<!-- disable body scroll which navbar is in active -->
+
+<section class="w3l-hero-headers-9" id="home">
+  <div class="slide text-center header11" data-selector="header11">
+      <div class="container">
+        {% for i in messages %}
+				<h3 class="bg-light p-2 mt-5">{{user.first_name}} {{i}}</h3>
+				{% endfor %}
+          <div class="banner-text ">
+            
+              <h5 class=" ">HELLOOO <br>THIS IS RESOTT</h5>
+              <p class=" ">We connect people (who want food) to
+                cool restaurants (who make food).
+                <span class="fa fa-smile-o"></span>
+                When we say good, we don't just mean good food. 
+                We also mean the goodness that good food leads to-
+                Good memories, a good temper, a good burp and a good day.<3  </p>
+          </div>
+      </div>
+  </div>
+</section>
+<section class="w3l-teams-15">
+	<div class="team-single-main ">
+		<div class="container">
+		<div  class="row">
+				<div class="column2 image-text col-lg-6">
+					<div class="nature-row ">
+						<h5><a href="#page" >
+							We like good Food :) </a></h5>
+					<p class="para  text ">
+						We have local teams dedicated to finding the best food in your city—
+            whether that's spaghetti carbonara or a really good burger—
+            so you can get the coolest restaurants brought right to you..</p>
+					</div>
+					<div class="nature-row ">
+						<h5><a href="#page">
+							We are healthy sometimes ;) </a></h5>
+					<p class="para  text ">
+						We have in house nutritionists behind collections like Healthy Enough, Vegan, Vegetarian, and more.
+            So when you want to find food that fits your diet, or to eat a little healthier, we can help.</p>
+					</div>
+					<div class="nature-row ">
+						<h5><a href="#page">Every Flavor Welcome</a></h5>
+					<p class="para  text ">
+						From your neighborhood sushi spot to the burger and fries you crave,
+             choose from over 100 local and national favorites across Lucknow.</p>
+					</div>
+				</div>
+			<div class="column2 image-text col-lg-6">
+        <div>&nbsp</div>
+				<img src='{% static "assets/images/index1.jpg" %}' alt="product" width="450" height="450" class="img-responsive ">
+			</div>
+		</div>
+		</div>
+		</div>
+	</div>
+</section>
+<section class="w3l-specification-6">
+    <div class="specification-layout ">
+        <div class="container">
+            <div class="main-titles-head ">
+                <h3 class="header-name ">
+					WHY RESOTT?
+                </h3>
+                <p class="tiltle-para  ">
+                  We are here to help you with the food stuff so you can do other stuff❤️💕</p>
+            </div>
+                    <div class="call-grids-w3 d-grid">
+                        <div class="grids-1  grids-effect-2">
+                            <span class="fa fa-beer"></span>
+                            <h4><a href="#feature" class="title-head">Well Decorated</a></h4>
+                            <p class="para">Loce yourself enough to live a healthy lifestyle.</p>
+                        </div>
+                        <div class="grids-1  grids-effect-2">
+                            <div class="color-white">
+                                <span class="fa fa-cutlery"></span>
+                            <h4><a href="#page" class=" title-head">Breakfast</a></h4>
+                            <p class="para">There has never been a sadness that can't be
+                               cured by breakfast food.</p>
+                        </div>
+                    </div>
+                        <div class="grids-1 grids-effect-2">
+                            <span class="fa fa-handshake-o"></span>
+                            <h4><a href="#feature" class="title-head">Expert Chef</a></h4>
+                            <p class="para">Cooking is the greatest gift you can give to someone you love.</p>
+                        </div>
+                        <div class="grids-1  grids-effect-2">
+                            <div class="color-white">
+                                <span class="fa fa-spoon"></span>
+                            <h4><a href="#page" class=" title-head">Lunch</a></h4>
+                            <p class="para">The best memories are made around the table.</p>
+                        </div>
+                    </div>
+                            <div class="grids-1 grids-effect-2">
+                                <span class="fa fa-smile-o"></span>
+                                <h4><a href="#feature" class="title-head">Quick Serve</a></h4>
+                                <p class="para">The miracle is not that we do this work.
+                                  But that we are happy to do it.
+                                </p>
+                            </div>
+                        <div class="grids-1  grids-effect-2">
+                            <div class="color-white">
+                                <span class="fa fa-apple"></span>
+                            <h4><a href="#page" class=" title-head">Dinner</a></h4>
+                            <p class="para">Dinner feels better when you eat it together.</p>
+                        </div>
+                    </div>
+                            <div class="grids-1 grids-effect-2">
+                                <span class="fa fa-diamond"></span>
+                                <h4><a href="#feature" class="title-head title-head">Delicious Food</a></h4>
+                                <p class="para">Delicious food is like a feel good song and
+                                   the best ones make you dance.</p>
+                            </div>  
+                        <div class="grids-1  grids-effect-2">
+                            <div class="color-white">
+                                <span class="fa fa-thumbs-o-up"></span>
+                            <h4><a href="#page" class=" title-head">Desert</a></h4>
+                            <p class="para">Desserts are the fairy tales of the kitchen ,
+                              a happily ever after to a supper</p>
+                        </div>
+                    </div>
+                  </div>
+        </div>
+</section>
+
+<section class="w3l-call-to-action_9">
+    <div class="call-w3">
+        <div class="container text-center">
+            <div class="title-head">
+            <h3>Enjoy Our<br>
+                Delicious Food</h3>
+            <p >A Recipe is a story that ends with a good meal.</p>
+        </div>
+              </div>
+        </div>
+    </div>
+</section>
+
+<section class="w3l-covers-18">
+        <div class="covers-main ">
+            <div class="container">
+              <div class="main-titles-head ">
+                <h3 class="header-name ">
+                  Discover NearBy Restaurants in Lucknow....
+                </h3>
+                <p class="tiltle-para">Don't look back and think "I Could Have Eaten That"</p>
+            </div>
+                <div class="gallery-image row">
+                  {% for i in key %}
+                  <div class="img-box col-lg-4 col-md-6 col-sm-6">
+                    <img src="{{ i.cimage.url }}" alt="product" class="img-responsive " width="300" height="350">
+                    <h5 class="my-2">{{ i.name }}</h5>
+                    <p class="para">{{ i.details }}</p>
+                    <button><a href="restabt/{{ i.id }}">Book Table</a></button>
+                  </div>
+                  {% endfor %}
+                  
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="w3l-footer-29-main">
+	<div class="footer-29 py-5 text-center">
+	  <div class="container">
+		<div class="footer-list-29 footer-1 ">
+				<h2><a href="index.html" class="footer-logo"><span class="fa fa-cutlery"></span> RESOTT </a></h2>
+				<p class="para">We connect people (who want food) to 
+          cool restaurants (who make food).
+        We are here to help you with the food stuff so you can do other stuff <3</p>
+		  </div>
+		<div class="row footer-top-29">
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Address</h6>
+				<ul>
+					<li><p><span class="fa fa-map-marker"></span> 632/96 HAZRATGANJ LUCKNOW</p></li>
+				</ul>
+		  </div>
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Opening Hours</h6>
+				<ul>
+						<li><p><span>Mon-Fri:</span> 9AM-11PM</p></li>
+					<li><p><span>Sat-Sun:</span> 10AM-1PM</p></li>
+				</ul>
+		  </div>
+		  <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-2 ">
+				<h6 class="footer-title-29">Contact Us</h6>
+				<ul>
+					<li><a href="tel:+7-800-999-800"><span class="fa fa-phone"></span> +(21)-255-999-8888</a></li>
+					<li><a href="mailto:corporate-mail@support.com" class="mail"><span class="fa fa-envelope-open-o"></span> resott-mail@support.com</a></li>
+				</ul>
+		  </div>
+		</div>
+	</div>
+  </section>
+  <section class="w3l-footer-29-main w3l-copyright">
+	<div class="container">
+	  <div class=" bottom-copies text-center">
+		<p class="copy-footer-29">© 2021 RESOTT. All rights reserved | </p>
+	  </div>
+	</div>
+  </section>
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" title="Go to top">
+	<span class="fa fa-long-arrow-up"></span>
+</button>
+<script>
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function () {
+		scrollFunction()
+	};
+
+	function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			document.getElementById("movetop").style.display = "block";
+		} else {
+			document.getElementById("movetop").style.display = "none";
+		}
+	}
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
+</script>
+<!-- /move top -->
+</body>
+</html>

@@ -1,0 +1,434 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>RESOTT</title>
+<style>
+    /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  appearance: textfield;
+}
+</style>
+    <!-- Template CSS -->
+    <link rel="stylesheet" href='{% static "assets/css/style-starter.css" %}'>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  </head>
+  <body id="home">
+<section class=" w3l-header-4 header-sticky">
+	<!--header-->
+	<header id="site-header" class="fixed-top">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-dark stroke">
+				<a class="navbar-brand" href="{% url 'index' %}">
+					<span class="fa fa-cutlery"></span> RESOTT
+				</a>
+				<!-- if logo is image enable this   
+			<a class="navbar-brand" href="#index.html">
+				<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+			</a> -->
+				<button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+					<span class="navbar-toggler-icon fa icon-close fa-times"></span>
+					
+				</button>
+	  
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item @@home__active">
+							<a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item @@about__active">
+                            <a class="nav-link" href="{% url 'about' %}">About</a>
+							
+						</li>
+						
+            <li class="nav-item @@booking__active">
+							<a class="nav-link" href="{% url 'obooking' %}">Booking</a>
+						</li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item @@register__active">
+              
+							<a class="nav-link" href="{% url 'profile' %}">hello {{user.first_name}}</a>
+						</li>
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'signout' %}">Log-out</a>
+						</li>
+            {% else %}
+            <li class="nav-item @@register__active">
+              
+							<a class="nav-link" href="{% url 'register' %}">Register</a>
+						</li>
+            <li class="nav-item @@register__active">
+							<a class="nav-link" href="{% url 'login' %}">Login</a>
+						</li>
+            {% endif %}
+						<li class="nav-item @@contact__active">
+							<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+						</li>
+						<form action="{% url 'search' %}" method="get" class="signin-form">
+                            {% csrf_token %}
+                                      <li class="nav-item ml-4">
+                                              
+                              <div class="row book-form">
+                                  <div class="form-input col-lg-6 col-md-6">
+                                      <input type="text" name="search" placeholder="🔎Search" required="">
+                                  </div>
+                                      </li>
+                          <li class="nav-item ml-4">
+                          <div class="bottom-btn col-md-4  mt-3">
+                            <button class="btn btn-danger">Go</button>
+                            </div>
+                            </li>
+                          </form>
+                                  </ul>
+                              </div>
+                          </nav>
+                      </div>
+	  </header>
+	<!--/header-->
+</section>
+
+<script src='{% static "assets/js/jquery-3.3.1.min.js" %}'></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src='{% static "assets/js/bootstrap.min.js" %}'></script>
+<!-- //bootstrap working-->
+<!--/MENU-JS-->
+<script>
+	$(window).on("scroll", function () {
+	  var scroll = $(window).scrollTop();
+  
+	  if (scroll >= 80) {
+		$("#site-header").addClass("nav-fixed");
+	  } else {
+		$("#site-header").removeClass("nav-fixed");
+	  }
+	});
+  
+	//Main navigation Active Class Add Remove
+	$(".navbar-toggler").on("click", function () {
+	  $("header").toggleClass("active");
+	});
+	$(document).on("ready", function () {
+	  if ($(window).width() > 991) {
+		$("header").removeClass("active");
+	  }
+	  $(window).on("resize", function () {
+		if ($(window).width() > 991) {
+		  $("header").removeClass("active");
+		}
+	  });
+	});
+  </script>
+  <!--//MENU-JS-->
+<!-- disable body scroll which navbar is in active -->
+<script>
+$(function () {
+  $('.navbar-toggler').click(function () {
+    $('body').toggleClass('noscroll');
+  })
+});
+</script>
+<!-- disable body scroll which navbar is in active -->
+
+
+<!-- breadcrumbs -->
+<section class="w3l-inner-banner-main">
+    <div class="about-inner services ">
+        <div class="container">   
+
+        <div class="breadcrumbs-sub">
+            <ul class="breadcrumbs-custom-path">
+                <li class="right-side "><a href="{% url 'index' %}" class="">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
+                <li class="active ">Menu</li>
+            </ul>
+            </div>
+</div>
+</div>
+</section>
+<body>
+            {% if user.is_superuser %}
+            <h1 class="jumbotron my-3">YOU ARE NOT ALLOWED HERE</h1>
+            {% else %}
+            {% if items|length == 0 %}
+            <div class="container-fluid">
+                <div class="jumbotron alert alert-danger">
+                    &times; Your Shopping Cart is empty !!!
+                </div>
+            </div>
+            {% else %}
+            <div class="content-area">
+                <section class="page-section image breadcrumbs overlay">
+                    <div class="container">
+                        {% if status %}
+                        <h1>{{status}}</h1>
+                        {% else %}
+                        <h1>My Cart ({{items|length}})</h1>
+                        {% endif %}
+                       
+                    </div>
+                </section>
+                {% if user.is_authenticated %}
+                {% if msg %}
+                <div class="{{cls}} mt-3">{{msg}}</div>
+                {% endif %}
+                <table class="table cart">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Item Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in items %}
+                        <tr id="row{{i.id}}">
+                            <td><img src="{{ i.rest.fimage.url }}" style="height:100px;width:150px;"
+                                    class="img-fluid"></td>
+                            <td>{{i.rest.dish}}</td>
+                            <td> &#8377; <span id="sp{{i.id}}"> {{i.rest.price}}</span></td>
+                            <td><div class="row">
+                                <div class="col-md-3">
+                                    <i class="fa fa-plus bg-success p-1 text-light rounded-circle" onclick="change_quan('{{i.id}}','plus')"></i>
+                                </div> 
+                                <div class="col-md-6">
+                                    <input type="number" value="{{i.quantity}}" min=0 class="form-control" id="cart{{i.id}}">
+                                </div>
+                                <div class="col-md-3">
+                                    <i class="fa fa-minus bg-danger p-1 text-light rounded-circle" onclick="change_quan('{{i.id}}','minus')"></i>
+                                </div>
+                            </div></td>
+                            <td>	<a href="{% url 'cart' %}"><i
+                                class="btn btn-danger ml-1 fa fa-trash" value="remove"
+                                onclick="remove('{{i.id}}')"></i></a></td>
+                        
+                                    </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+
+                <section id="content" class="content col-sm-8 col-md-9">
+                    <h2 class="text-center">CHECKOUT</h2>
+                    <table class="table">
+                        <tr>
+                            <td>Quantity</td>
+                            <td id="quantity"></td>
+                        </tr>
+                        <tr>
+                            <td>Booking Charge</td>
+                            <td>&#8377 500</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td id="total">10%</td>
+                        </tr>
+                        <tr>
+                            <td>Discount offered by Resott😍</td>
+                            <td id="disc"></td>
+                        </tr>
+                       
+                        <tr>
+                            <td>GRAND TOTAL</td>
+                            <td id="grand_total"></td>
+                        </tr>
+                    </table>
+                </section>
+
+                {% comment %} <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                    Checkout
+                </button><br><br><br> {% endcomment %}
+				<div class="row col-lg-4">
+				<div class="p-3 col-lg-4"></div>
+                <div class="p-3 col-lg-6">
+                    <a href="{% url 'process_payment' %}" class="btn btn-success btn-block btn-sm">PROCEED TO PAY<span id="grand_total"></span></a>
+                </div>
+			</div>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Checkout</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-group" action="#" method="#">
+                            <div class="form-group">
+                                <label class="col-form-label">CheckIn</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Checkout</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label ">Person's</label>
+                                <input type="number" class="form-control" min="1" max="6"
+                                    placeholder="Number of person's">
+                                <span class="text-danger">Min 1 Person and Max 6 Person's</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Total Payment</label>
+                                <input type="text" class="form-control" readonly>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Make Payment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Optional JavaScript ___  -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <!-- jQuery -->
+        <script src="{% static 'vendor/jquery.2.2.3.min.js' %}"></script>
+        <!-- Popper js -->
+        <script src="{% static 'vendor/popper.js/popper.min.js' %}"></script>
+        <!-- Bootstrap JS -->
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+        <!-- menu  -->
+        <script src="{% static 'vendor/mega-menu/assets/js/custom.js' %}"></script>
+        <!-- Select js -->
+        <script src="{% static 'vendor/selectize.js/selectize.min.js' %}"></script>
+        <!-- jquery easing -->
+        <script src="{% static 'vendor/jquery.easing.min.js' %}"></script>
+        <!-- owl.carousel -->
+        <script src="{% static 'vendor/owl-carousel/owl.carousel.min.js' %}"></script>
+        <!-- AOS js -->
+        <script src="{% static 'vendor/aos-next/dist/aos.js' %}"></script>
+        <!-- Fancybox -->
+                <script src="{% static 'vendor/fancybox/dist/jquery.fancybox.min.js' %}"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- Theme js -->
+        <script src="{% static 'js/theme.js' %}"></script>
+    </div> <!-- /.main-page-wrapper -->
+    <!-- remove itemm from cart start -->
+
+    <script>
+        function grandTotal(){
+            $.ajax({
+                url:"{% url 'get_cart_data' %}",
+                type:'get',
+                success:function(data){
+                    p = Math.round(100-((data.offer/data.total)*100),2)
+                    save = data.total-data.offer;
+                    
+                    $("#disc").html("&#8377;"+data.dis);
+                    $("#offer").html("&#8377;"+save+" <span class='text-success'>("+p+"%)</span>");
+                     $("#quantity").html(data.quan+" Items");
+                     $("#total").html("&#8377;"+data.offer);
+                     $("#grand_total").html("&#8377;"+data.gt);
+                     $("#btamt").html("&#8377;"+data.offer);
+    
+                }
+            })
+        }
+        grandTotal();
+        function change_quan(id,action){
+    let old = $("#cart"+id).val();
+     
+    quan = 0
+    if(action=="plus"){
+        quan += parseInt(old)+1
+    }else{
+        quan += parseInt(old)-1
+    }
+    
+
+
+    $("#cart"+id).val(quan);
+    
+    $.ajax({
+        url:"{% url 'change_quan' %}",
+        type:"get",
+        data:{cid:id, quantity:quan},
+        success:function(data){
+            grandTotal();
+          if(data==0){
+             remove_cart(id);
+          }
+        }
+    })
+}
+
+function remove(id) {
+					$.ajax({
+						url: "{% url 'r_cart' %}",
+						data: {
+							delete_cart: id
+						},
+						success: function (data) {
+							$("#row" + id).hide();
+						}
+					})
+				}
+    
+       
+    </script>
+    
+    <!-- remove itemm from cart start -->
+
+    <!-- <script>
+       function remove(id) {
+            $.ajax({
+                url: "",
+                data: {
+                    delete_cart: id
+                },
+                success: function (data) {
+                    $("#row" + id).hide();
+                }
+            })
+        }
+        function total() {
+            $.ajax({
+                url: "{% url 'get_cart_data' %}",
+                type: "get",
+                success: function (data) {
+                    save = data.tot;
+                    $("#quantity").html(data.quan + "item");
+                    $("#g_total").html("&#8377;" + data.tot);
+                }
+            })
+        }
+        total();
+    </script>
+<!-- move top -->
+
+
+ -->
+
+
+
+<!-- /move top -->
+</body>
+
+</html>
