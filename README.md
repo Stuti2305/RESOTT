@@ -54,32 +54,11 @@
 - pip (Python package manager)
 - Virtual environment (optional but recommended)
 
-### Steps:
-```bash
-# Clone the repository
-git clone https://github.com/your-username/resott.git
-cd resott
-
-# Create virtual environment and activate
-python -m venv venv
-source venv/bin/activate   # or venv\Scripts\activate on Windows
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Apply migrations
-python manage.py makemigrations
-python manage.py migrate
-
-# Create superuser (for admin access)
-python manage.py createsuperuser
-
-# Run the server
-python manage.py runserver
 
 
 
-```
+
+
 # 🍽️ RESOTT – Smart Restaurant Table & Order Management
 
 **RESOTT** is a full-stack web application designed to revolutionize the dining experience by eliminating long wait times for tables and food. Whether you're a customer looking for a seamless dine-in experience, a restaurant owner aiming to streamline operations, or an administrator overseeing multiple establishments — RESOTT is built for you.
@@ -176,15 +155,31 @@ python manage.py runserver
 
 ---
 
-## 📷 Demo Screenshots
 
-*(Coming Soon)* – Include screenshots of the dashboard, reservation system, menu page, and admin panel.
-
----
 
 ## 🧪 Setup & Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/your-username/resott.git
-   cd resott
+
+
+### Steps:
+```bash
+# Clone the repository
+git clone https://github.com/your-username/resott.git
+cd resott
+
+# Create virtual environment and activate
+python -m venv venv
+source venv/bin/activate   # or venv\Scripts\activate on Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Apply migrations
+python manage.py makemigrations
+python manage.py migrate
+
+# Create superuser (for admin access)
+python manage.py createsuperuser
+
+# Run the server
+python manage.py runserver
