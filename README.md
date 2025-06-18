@@ -1,7 +1,7 @@
 
 
-# 🍽️ RESOTT – Smart Restaurant Table & Order Management
-([Presentation Link](https://www.canva.com/design/DAGmanZXK4g/nFCZwAFHB5x1dDRpWM8RQA/view?utm_content=DAGmanZXK4g&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hde07eb9bf8))
+# 🍽️ RESOTT – Smart Restaurant Table & Order Management ([Presentation Link](https://www.canva.com/design/DAGmanZXK4g/nFCZwAFHB5x1dDRpWM8RQA/view?utm_content=DAGmanZXK4g&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hde07eb9bf8))
+
 **RESOTT** is a full-stack web application designed to revolutionize the dining experience by eliminating long wait times for tables and food. Whether you're a customer looking for a seamless dine-in experience, a restaurant owner aiming to streamline operations, or an administrator overseeing multiple establishments — RESOTT is built for you.
 
 ---
